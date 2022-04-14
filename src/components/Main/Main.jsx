@@ -1,5 +1,7 @@
-import React from 'react'
+import React, {useContext}  from 'react';
 import {Card, CardHeader,CardContent, Typography, Grid, Divider} from '@material-ui/core';
+import { ExpenseTrackerContext } from '../../context/context';
+import InfoCard from '../InfoCard';
 
 import useStyle from './styles';
 
@@ -8,16 +10,17 @@ import List from './List/List';
 
 const Main = () => {
     const classes = useStyle();
+    const { balance } = useContext(ExpenseTrackerContext);
+
   return (
     <Card className={classes.root}>
-        <CardHeader title="Expence Manager" subheader="Powered by Speechely" />
+        <CardHeader title="Budget Analyzer" subheader="using Speechely" />
         <CardContent>
-            <Typography align="center" variant="h5">Total Balance 9lakh</Typography>
+            <Typography align="center" variant="h5">Total Balance Rs {balance}</Typography>
             <Typography variant="subtitle1" style={{lineWeight: '1.5em',marginTop: '20px'}}>
-                {/* InfoCard */}
-                Try saying : Add income for 2lach in category salary for monday
+                <InfoCard />
             </Typography>
-            <Divider/>
+            <Divider className={classes.divider}/>
             <Form/>
         </CardContent>
         <CardContent className={classes.cardContent}>
